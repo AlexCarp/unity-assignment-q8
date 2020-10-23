@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container, Box, CircularProgress, Typography} from '@material-ui/core';
+import {Button, Container, Box, CircularProgress, Typography, CssBaseline} from '@material-ui/core';
 import {ThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {red, blue} from '@material-ui/core/colors';
 
@@ -11,6 +11,9 @@ const theme = createMuiTheme({
   palette: {
     primary: blue,
     secondary: red,
+    background: {
+      default: "#ededed"
+    },
   },
 });
 
@@ -44,6 +47,7 @@ export const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container className="app" fixed>
         <Box data-testid="app-box" m={2}>
           <UsersTable rows={tableData} />
