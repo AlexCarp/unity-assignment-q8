@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const UsersTable = ({data}) => {
+export const UsersTable = ({rows}) => {
   const classes = useStyles();
   const [isChronological, setIsChronological] = React.useState(false);
 
@@ -83,7 +83,7 @@ export const UsersTable = ({data}) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data
+              {rows
                 .sort(compareByTimestamps)
                 .map((row) => {
                   return (
@@ -104,7 +104,15 @@ export const UsersTable = ({data}) => {
 }
 
 UsersTable.propTypes = {
-  rows: PropTypes.array
+  rows: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    timestamp: PropTypes.number.isRequired,
+    diff: PropTypes.arrayOf(PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      oldValue: PropTypes.string.isRequired,
+      newValue: PropTypes.string.isRequired,
+    })).isRequired,
+  })).isRequired,
 };
 
 export default UsersTable;

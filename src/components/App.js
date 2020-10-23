@@ -30,7 +30,7 @@ export const App = () => {
 
       setTableData((tableData) => [
         ...tableData,
-        ...fetchedTableData.data
+        ...fetchedTableData.data,
       ]);
     } catch (err) {
       setIsError(true);
@@ -46,7 +46,7 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <Container className="app" fixed>
         <Box data-testid="app-box" m={2}>
-          <UsersTable data={tableData} />
+          <UsersTable rows={tableData} />
           {
             isError ?
               <Box pt={2}>
